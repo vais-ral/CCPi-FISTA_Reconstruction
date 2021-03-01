@@ -25,7 +25,7 @@ if(WIN32)
 elseif(APPLE)
   set (FLAGS "-DCCPiReconstructionIterative_EXPORTS ")
 elseif(UNIX)
-   set (FLAGS "-O2 -funsigned-char -Wall  -Wl,--no-undefined  -DCCPiReconstructionIterative_EXPORTS ")
+   set (FLAGS "-O3 -funsigned-char -Wall  -Wl,--no-undefined  -DCCPiReconstructionIterative_EXPORTS ")
    set(EXTRA_LIBRARIES "m")
 endif()
   set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAGS}")
@@ -35,9 +35,6 @@ message("CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS}")
 ## Build the regularisers package as a library
 message("Adding regularisers as a shared library")
 
-#set(CMAKE_C_COMPILER /apps/pgi/linux86-64/17.4/bin/pgcc)
-#set(CMAKE_C_FLAGS "-acc -Minfo -ta=tesla:cc20 -openmp")
-#set(CMAKE_C_FLAGS "-acc -Minfo -ta=multicore -openmp -fPIC")
 add_library(cilreg SHARED
 	    ${CMAKE_CURRENT_SOURCE_DIR}/regularisers_CPU/FGP_TV_core.c
 	    ${CMAKE_CURRENT_SOURCE_DIR}/regularisers_CPU/SB_TV_core.c
